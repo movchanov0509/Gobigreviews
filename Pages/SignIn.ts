@@ -19,6 +19,7 @@ export class SignIn {
     readonly chatLogo: Locator;
     readonly closeIconChat: Locator;
     readonly btnChat: Locator;
+    
 
     constructor(page: Page) {
         this.page = page;
@@ -38,6 +39,7 @@ export class SignIn {
         this.chatLogo = page.locator('img[src="https://embed.tawk.to/_s/v4/assets/images/attention-grabbers/168-r-br.svg"]');
         this.closeIconChat = page.locator('i[class="tawk-icon tawk-icon-close tawk-icon-small"]');
         this.btnChat = page.locator('button[class="tawk-custom-color tawk-custom-border-color tawk-button tawk-button-circle tawk-button-large"]');
+       
         
 
     }
@@ -48,15 +50,6 @@ export class SignIn {
         await expect(this.logo).toBeTruthy();
     }
 
-    async fillPassword(value: string) {
-        await this.inputPassword.fill(value);
-        await expect(this.inputPassword).toHaveValue(value);
-    }
-
-    async fillEmail(value: string) {
-        await this.inputEmail.fill(value);
-        await expect(this.inputEmail).toHaveValue(value);
-    }
 
     async clickSubmit() {
         await this.btnSubmit.click();
