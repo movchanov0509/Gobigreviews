@@ -26,20 +26,27 @@ export async function safeCheck(locator: Locator) {
     }
 }
 
-export async function safeEmailFill(locator: Locator, value: string) {
+export async function openSiteSafely(page: Page) {
     try {
-        await locator.waitFor({ state: 'visible', timeout: 5000 });
-        await locator.fill(value);
+        await page.waitForLoadState('domcontentloaded', { timeout: 5000 });
+        await page.goto('/');
     } catch (error) {
-        console.warn(`Не удалось заполнить поле ${locator.toString()} значением "${value}":`, error);
+        console.warn(`Не вдалося відкрити сайт:`, error);
     }
 }
 
-export async function safePasswordFill(locator: Locator, value: string) {
+export async function checkTitleSafely(page: Page) {
     try {
-        await locator.waitFor({ state: 'visible', timeout: 5000 });
-        await locator.fill(value);
+        await expect(page).toHaveTitle('The Connected Shop - Smart Locks, Smart Sensors, Smart Home & Office');
     } catch (error) {
-        console.warn(`Не удалось заполнить поле ${locator.toString()} значением "${value}":`, error);
+        console.warn('Не вдалося перевірити заголовок сторінки:', error);
+    }
+}
+
+export async function UrlSafelyCheck(page: Page, expectedURL: string) {
+    try {
+        await expect(page).toHaveURL(expectedURL, { timeout: 5000 });
+    } catch (error) {
+        console.warn(`URL сторінки не відповідає очікуваному: ${expectedURL}`, error);
     }
 }

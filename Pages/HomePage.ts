@@ -7,16 +7,4 @@ export class HomePage{
         this.page = page;
        
     }
-
-    async openSite() {
-        await this.page.goto('/')
-    }
-
-    async checkTitle() {
-        await expect(this.page).toHaveURL('https://gobigreviews.com/')
-    }
-
-    async checkURL() {
-        await expect(this.page).toHaveTitle('Boost Reviews and Sales | Gobigreviews')
-    }
 }

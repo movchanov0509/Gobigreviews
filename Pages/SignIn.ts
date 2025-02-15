@@ -1,4 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
+import exp from 'constants';
 
 
 export class SignIn {
@@ -51,40 +52,66 @@ export class SignIn {
     }
 
 
-    async clickSubmit() {
-        await this.btnSubmit.click();
+    async checkSubmit() {
+        await expect(this.btnSubmit).toBeVisible();
+        await expect(this.btnSubmit).toBeTruthy();
+        await expect(this.btnSubmit).toHaveAttribute('class', 'btn btn-primary');
+
     }
 
-    async clickChat() {
-        await this.btnChat.click()
+    async checkChat() {
+        await expect(this.btnChat).toBeVisible();
+        await expect(this.btnChat).toBeTruthy();
+        await expect(this.btnChat).toHaveAttribute('type', 'button');
+        await expect(this.btnChat).toHaveAttribute('style', 'bottom: 0px; left: 0px; position: absolute; z-index: 1000; border: 0px;');
+        await expect(this.btnChat).toHaveAttribute('tabindex', '0');
     }
 
-    async clickClosedChat() {
-        await this.closeIconChat.click()
+    async checkClosedChat() {
+        await expect(this.closeIconChat).toBeVisible();
+        await expect(this.closeIconChat).toBeTruthy();
+        await expect(this.closeIconChat).toHaveAttribute('role', 'button');
+        await expect(this.closeIconChat).toHaveAttribute('data-text', 'Close');
+        await expect(this.closeIconChat).toHaveAttribute('aria-label', 'Close');
+        await expect(this.closeIconChat).toHaveAttribute('tabindex', '0');
     }
 
-    async clickForgotPassword() {
-        await this.linkForgot.click()
+    async checkForgotPassword() {
+        await expect(this.linkForgot).toBeVisible();
+        await expect(this.linkForgot).toBeTruthy();
+        await expect(this.linkForgot).toHaveText(' Forgot password? ');
+        await expect(this.linkForgot).toHaveAttribute('class', 'link-primary');
     }
 
-    async clickGoogleSignIn() {
-        await this.googleSignIn.click()
+    async checkGoogleSignIn() {
+        await expect(this.googleSignIn).toBeVisible();
+        await expect(this.googleSignIn).toBeTruthy();
+        await expect(this.googleSignIn).toHaveAttribute('class', 'btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100');
     }
 
-    async clickFacebookSignIn() {
-        await this.facebookSignIn.click()
+    async checkFacebookSignIn() {
+        await expect(this.facebookSignIn).toBeVisible();
+        await expect(this.facebookSignIn).toBeTruthy();
+        await expect(this.facebookSignIn).toHaveAttribute('class', 'btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100');
     }
 
-    async clickRememberMe() {
-        await this.inputRemember.click()
+    async checkRememberMe() {
+        await expect(this.inputRemember).toBeVisible();
+        await expect(this.inputRemember).toBeTruthy();
+        await expect(this.inputRemember).toHaveAttribute('class', 'form-check-input');
+        await expect(this.inputRemember).toHaveAttribute('type', 'checkbox');
     }
 
-    async clickKeyEye() {
-        await this.keyEye.click()
+    async checkKeyEye() {
+        await expect(this.keyEye).toBeVisible();
+        await expect(this.keyEye).toBeTruthy();
     }
 
-    async clickSignUp() {
-        await this.linkSignUp.click()
+    async checkSignUp() {
+        await expect(this.linkSignUp).toBeVisible();
+        await expect(this.linkSignUp).toBeTruthy();
+        await expect(this.linkSignUp).toHaveAttribute('class', 'link-primary fw-semibold');
+        await expect(this.linkSignUp).toHaveText('Sign up');
     }
 
 }
