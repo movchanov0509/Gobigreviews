@@ -78,6 +78,7 @@ test.describe('registration on site', async () => {
         await safeClick(signUp.checkBoxNews);
         await signUp.checkSubmit();
         await safeClick(signUp.btnSubmit);
+        await signUp.validationEmail();
         // error? (Адрес электронной почты должен содержать символ "@". В адресе "test.mail,com" отсутствует символ "@")
     })
 
@@ -97,31 +98,29 @@ test.describe('registration on site', async () => {
         await safeClick(signUp.checkBoxNews);
         await signUp.checkSubmit();
         await safeClick(signUp.btnSubmit);
-    
-    
-        await signUp.checkInvalidPassword();
+        await signUp.checkAllErrors();
     
     })
 
-    // test('registration with not existing Email', async () => {
-    //     await signUp.checkLogo();
-    //     await signUp.checkInputName();
-    //     await safeFill(signUp.inputName, 'Test');
-    //     await signUp.checkInputEmail();
-    //     await safeFill(signUp.inputEmailSignUp, 'test@gmail.com');
-    //     await signUp.checkInputPassword();
-    //     await safeFill(signUp.inputPasswordSignUp, 'Qwerty123');
-    //     await signUp.checkRepeatPassword();
-    //     await safeFill(signUp.inputRepeatPassword, 'Qwerty123');
-    //     await signUp.checkAcceptCondition();
-    //     await safeClick(signUp.acceptCondition);
-    //     await signUp.checkAcceptNews();
-    //     await safeClick(signUp.checkBoxNews);
-    //     await signUp.checkSubmit();
-    //     await safeClick(signUp.btnSubmit);
-    //     await signUp.checkExistingdEmail();
+    test('registration with not existing Email', async () => {
+        await signUp.checkLogo();
+        await signUp.checkInputName();
+        await safeFill(signUp.inputName, 'Test');
+        await signUp.checkInputEmail();
+        await safeFill(signUp.inputEmailSignUp, 'test@gmail.com');
+        await signUp.checkInputPassword();
+        await safeFill(signUp.inputPasswordSignUp, 'Qwerty123');
+        await signUp.checkRepeatPassword();
+        await safeFill(signUp.inputRepeatPassword, 'Qwerty123');
+        await signUp.checkAcceptCondition();
+        await safeClick(signUp.acceptCondition);
+        await signUp.checkAcceptNews();
+        await safeClick(signUp.checkBoxNews);
+        await signUp.checkSubmit();
+        await safeClick(signUp.btnSubmit);
+        await signUp.checkAllErrors();
 
-    // })
+    })
 
     // test('regisration with google', async () => {
     //     await signUp.checkLogo();

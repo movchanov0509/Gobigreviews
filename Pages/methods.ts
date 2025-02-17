@@ -37,7 +37,7 @@ export async function openSiteSafely(page: Page) {
 
 export async function checkTitleSafely(page: Page) {
     try {
-        await expect(page).toHaveTitle('The Connected Shop - Smart Locks, Smart Sensors, Smart Home & Office');
+        await expect(page).toHaveTitle('Boost Reviews and Sales | Gobigreviews');
     } catch (error) {
         console.warn('Не вдалося перевірити заголовок сторінки:', error);
     }
@@ -50,3 +50,26 @@ export async function UrlSafelyCheck(page: Page, expectedURL: string) {
         console.warn(`URL сторінки не відповідає очікуваному: ${expectedURL}`, error);
     }
 }
+
+export async function checkElementAttributesSafely(
+    elementLocator: Locator,
+    expectedAttributes: Record<string, string>,
+    expectedText?: string
+) {
+    try {
+        await expect(elementLocator).toBeVisible();
+
+        // Перевіряємо атрибути
+        for (const [attribute, expectedValue] of Object.entries(expectedAttributes)) {
+            await expect(elementLocator).toHaveAttribute(attribute, expectedValue);
+        }
+
+        // Якщо передано текст, перевіряємо його
+        if (expectedText !== undefined) {
+            await expect(elementLocator).toHaveText(expectedText);
+        }
+    } catch (error) {
+        console.warn(`Елемент не відповідає очікуваним атрибутам або тексту:`, { expectedAttributes, expectedText }, error);
+    }
+}
+

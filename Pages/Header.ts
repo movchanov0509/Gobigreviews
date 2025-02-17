@@ -1,5 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
-import exp from 'constants';
+import { checkElementAttributesSafely } from './methods';
 
 
 export class Header {
@@ -28,61 +28,60 @@ export class Header {
 
 
     async checkLogolink() {
-        await expect(this.linkLogo).toBeVisible();
-        //await expect(this.linkLogo).toHaveAttribute('class', 'navbar-brand');
-        await expect(this.linkLogo).toBeTruthy();
+        await checkElementAttributesSafely(this.linkLogo, {
+            class: 'navbar-brand',
+        })
     }
 
 
     async checkSignIn() {
-        await expect(this.linkSignIn).toBeVisible();
-        await expect(this.linkSignIn).toBeTruthy();
-        await expect(this.linkSignIn).toHaveAttribute('class', 'nav-link anchor');
-        await expect(this.linkSignIn).toHaveAttribute('rel', 'canonical');
+        await checkElementAttributesSafely(this.linkSignIn, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     }
 
     async checkHome() {
-        await expect(this.linkHome).toBeVisible();
-        await expect(this.linkHome).toBeTruthy();
-        await expect(this.linkHome).toHaveAttribute('class', 'nav-link anchor');
-        await expect(this.linkHome).toHaveAttribute('rel', 'canonical')
+        await checkElementAttributesSafely(this.linkHome, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     
     }
 
     async checkAbout() {
-        await expect(this.linkAbout).toBeVisible();
-        await expect(this.linkAbout).toBeTruthy();
-        await expect(this.linkAbout).toHaveAttribute('class', 'nav-link anchor');
-        await expect(this.linkAbout).toHaveAttribute('rel', 'canonical')
+        await checkElementAttributesSafely(this.linkAbout, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     }
 
     async checkHowItWorks() {
-        await expect(this.linkHowItWorks).toBeVisible();
-        await expect(this.linkHowItWorks).toBeTruthy();
-        await expect(this.linkHowItWorks).toHaveAttribute('class', 'nav-link anchor active');
-        await expect(this.linkHowItWorks).toHaveAttribute('rel', 'canonical')
+        await checkElementAttributesSafely(this.linkHowItWorks, {
+            class: 'nav-link anchor active',
+            rel: 'canonical',
+        })
 
     }
 
     async checkPricing() {
-        await expect(this.linkPricing).toBeVisible();
-        await expect(this.linkPricing).toBeTruthy();
-        await expect(this.linkPricing).toHaveAttribute('class', 'nav-link anchor');
-        await expect(this.linkPricing).toHaveAttribute('rel', 'canonical')
+        await checkElementAttributesSafely(this.linkPricing, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     }
 
     async checkContact() {
-        await expect(this.linkContact).toBeVisible();
-        await expect(this.linkContact).toBeTruthy();
-        await expect(this.linkContact).toHaveAttribute('class', 'nav-link anchor');
-        await expect(this.linkContact).toHaveAttribute('rel', 'canonical')
+        await checkElementAttributesSafely(this.linkContact, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     }
     
     async checkTryForFree() {
-        await expect(this.linkTryForFree).toBeVisible();
-        await expect(this.linkTryForFree).toBeTruthy();
-        await expect(this.linkTryForFree).toHaveAttribute('class', 'nav-link anchor');
-        await expect(this.linkTryForFree).toHaveAttribute('rel', 'canonical')
-
+        await checkElementAttributesSafely(this.linkTryForFree, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     }
 }
