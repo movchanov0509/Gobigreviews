@@ -4,7 +4,6 @@ import { Header } from '../Pages/Header';
 import { HomePage } from '../Pages/HomePage';
 import { UrlSafelyCheck, checkTitleSafely, openSiteSafely, safeCheck, safeClick, safeFill } from '../Pages/methods';
 import { SignUp } from '../Pages/SignUp'
-import { GooglePage } from '../Pages/GooglePage';
 
 
 test.describe('registration on site', async () => {
@@ -12,7 +11,6 @@ test.describe('registration on site', async () => {
     let header: Header;
     let signIn: SignIn;
     let signUp: SignUp;
-    let googlePage: GooglePage;
 
 
     test.beforeEach(async ({ page }) => {
@@ -20,9 +18,8 @@ test.describe('registration on site', async () => {
         header = new Header(page);
         signIn = new SignIn(page);
         signUp = new SignUp(page);
-        googlePage = new GooglePage(page);
 
-        // якщо опен сайт виконається ок, якщо ні, буде помилка
+
         await openSiteSafely(homepage.page);
         await UrlSafelyCheck(homepage.page, 'https://gobigreviews.com/');
         await checkTitleSafely(homepage.page);
@@ -79,7 +76,7 @@ test.describe('registration on site', async () => {
         await signUp.checkSubmit();
         await safeClick(signUp.btnSubmit);
         await signUp.validationEmail();
-        // error? (Адрес электронной почты должен содержать символ "@". В адресе "test.mail,com" отсутствует символ "@")
+
     })
 
     test('registration with not valid password', async () => {
@@ -121,12 +118,5 @@ test.describe('registration on site', async () => {
         await signUp.checkAllErrors();
 
     })
-
-    // test('regisration with google', async () => {
-    //     await signUp.checkLogo();
-    //     await signUp.checkGoogleSignUp();
-    //     await safeClick(signUp.googleSignUp);
-    //     await googlePage.checkGooglePage();
-    // })
 
 })
