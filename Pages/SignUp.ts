@@ -159,7 +159,7 @@ export class SignUp {
     }
 
     async submitBtnDisable() {
-        await checkElementAttributesSafely(this.submitBtnDisable, {
+        await checkElementAttributesSafely(this.btnSubmit, {
             class: 'btn btn-primary',
             type: 'submit'
         })
