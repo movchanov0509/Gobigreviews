@@ -76,13 +76,9 @@ export class Header {
     }
 
     async checkTryForFree() {
-        try {
-            await expect(this.linkTryForFree).toBeVisible();
-            await expect(this.linkTryForFree).toBeTruthy();
-            await expect(this.linkTryForFree).toHaveAttribute('class', 'nav-link anchor');
-            await expect(this.linkTryForFree).toHaveAttribute('rel', 'canonical');
-        } catch (error) {
-            console.error("Error in checkTryForFree:", error);
-        }
+        await checkElementAttributesSafely(this.linkTryForFree, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        });
     }
 }
