@@ -1,0 +1,55 @@
+{
+    "contactForm": {
+        "validData": {
+            "name": "Masha",
+            "email": "test123@ukr.net",
+            "subject": "Testing",
+            "message": "Test message"
+        },
+        "emptyFields": {
+            "name": "",
+            "email": "",
+            "subject": "",
+            "message": ""
+        },
+        "invalidEmail": {
+            "name": "Test",
+            "email": "test123gmail.com",
+            "subject": "Testing",
+            "message": "Test message"
+        }
+    },
+
+    "registrationForm": {
+        "validData": {
+            "name": "Test",
+            "email": "test123456@gmail.com",
+            "password": "Qwerty123",
+            "repeatPassword": "Qwerty123"
+    },
+        "emptyData": {
+            "name": "",
+            "email": "",
+            "password": "",
+            "repeatPassword": ""
+        },
+        "invalidEmail": {
+            "name": "Test",
+            "email": "test.gmail.com",
+            "password": "Qwerty123",
+            "repeatPassword": "Qwerty123"
+        },
+        "invalidPassword": {
+            "name": "Test",
+            "email": "test123456@gmail.com",
+            "password": "12345678",
+            "repeatPassword": "12345678"
+        },
+        "existEmail": {
+            "name": "Test",
+            "email": "test@gmail.com",
+            "password": "Qwerty123",
+            "repeatPassword": "Qwerty123"
+        }
+    }
+}

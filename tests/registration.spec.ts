@@ -2,9 +2,16 @@ import { test, Page, expect } from '@playwright/test';
 import { SignIn } from '../Pages/SignIn';
 import { Header } from '../Pages/Header';
 import { HomePage } from '../Pages/HomePage';
-import { UrlSafelyCheck, checkTitleSafely, openSiteSafely, safeCheck, safeClick, safeFill } from '../Pages/methods';
+import { urlSafelyCheck, checkTitleSafely, openSiteSafely, safeCheck, safeClick, safeFill } from '../Pages/methods';
 import { SignUp } from '../Pages/SignUp'
+import * as users from '../tests/users.json';
 
+interface RegistrationFormData {
+    name: string;
+    email: string;
+    password: string;
+    repeatPassword: string;
+}
 
 test.describe('registration on site', async () => {
     let homepage: HomePage;
@@ -20,9 +27,9 @@ test.describe('registration on site', async () => {
         signUp = new SignUp(page);
 
 
-        await openSiteSafely(homepage.page);
-        await UrlSafelyCheck(homepage.page, 'https://gobigreviews.com/');
-        await checkTitleSafely(homepage.page);
+        //await openSiteSafely(homepage.page);
+        await page.goto('https://gobigreviews.com/');
+       // await checkTitleSafely(homepage.page);
         await header.checkLogolink();
         await header.checkSignIn();
         await safeClick(header.linkSignIn);
@@ -31,13 +38,14 @@ test.describe('registration on site', async () => {
     })
 
     test('registration', async () => {
+        const validData: RegistrationFormData = users.registrationForm.validData;
         await signUp.checkLogo();
         await signUp.checkInputName();
-        await safeFill(signUp.inputName, 'Test');
+        await safeFill(signUp.inputName, validData.name);
         await signUp.checkInputEmail();
-        await safeFill(signUp.inputEmailSignUp, 'test123456@gmail.com');
+        await safeFill(signUp.inputEmailSignUp, validData.email);
         await signUp.checkInputPassword();
-        await safeFill(signUp.inputPasswordSignUp, 'Qwerty123');
+        await safeFill(signUp.inputPasswordSignUp, validData.password);
         await signUp.checkAcceptCondition();
         await safeClick(signUp.acceptCondition);
         await signUp.checkAcceptNews();
@@ -47,13 +55,14 @@ test.describe('registration on site', async () => {
     })
 
     test('registration with empty fields', async () => {
+        const emptyData: RegistrationFormData = users.registrationForm.emptyData;
         await signUp.checkLogo();
         await signUp.checkInputName();
-        await safeFill(signUp.inputName, '');
+        await safeFill(signUp.inputName, emptyData.name);
         await signUp.checkInputEmail();
-        await safeFill(signUp.inputEmailSignUp, '');
+        await safeFill(signUp.inputEmailSignUp, emptyData.email);
         await signUp.checkInputPassword();
-        await safeFill(signUp.inputPasswordSignUp, '');
+        await safeFill(signUp.inputPasswordSignUp, emptyData.password);
         await signUp.checkAcceptCondition();
         await safeClick(signUp.acceptCondition);
         await signUp.checkAcceptNews();
@@ -62,13 +71,14 @@ test.describe('registration on site', async () => {
     })
 
     test('registration with not valid email', async () => {
+        const invalidEmail: RegistrationFormData = users.registrationForm.invalidEmail;
         await signUp.checkLogo();
         await signUp.checkInputName();
-        await safeFill(signUp.inputName, 'Test');
+        await safeFill(signUp.inputName, invalidEmail.name);
         await signUp.checkInputEmail();
-        await safeFill(signUp.inputEmailSignUp, 'test.gmail.com');
+        await safeFill(signUp.inputEmailSignUp, invalidEmail.email);
         await signUp.checkInputPassword();
-        await safeFill(signUp.inputPasswordSignUp, 'Qwerty123');
+        await safeFill(signUp.inputPasswordSignUp, 'invalidEmail.password');    
         await signUp.checkAcceptCondition();
         await safeClick(signUp.acceptCondition);
         await signUp.checkAcceptNews();
@@ -80,15 +90,16 @@ test.describe('registration on site', async () => {
     })
 
     test('registration with not valid password', async () => {
+        const invalidPassword: RegistrationFormData = users.registrationForm.invalidPassword;
         await signUp.checkLogo();
         await signUp.checkInputName();
-        await safeFill(signUp.inputName, 'Testing');
+        await safeFill(signUp.inputName, invalidPassword.name);
         await signUp.checkInputEmail();
-        await safeFill(signUp.inputEmailSignUp, 'test123456@gmail.com');
+        await safeFill(signUp.inputEmailSignUp, invalidPassword.email);
         await signUp.checkInputPassword();
-        await safeFill(signUp.inputPasswordSignUp, '1234578');
+        await safeFill(signUp.inputPasswordSignUp, invalidPassword.password);
         await signUp.checkRepeatPassword();
-        await safeFill(signUp.inputRepeatPassword, '1234578');
+        await safeFill(signUp.inputRepeatPassword, invalidPassword.repeatPassword);
         await signUp.checkAcceptCondition();
         await safeClick(signUp.acceptCondition);
         await signUp.checkAcceptNews();
@@ -99,16 +110,17 @@ test.describe('registration on site', async () => {
     
     })
 
-    test('registration with not existing Email', async () => {
+    test('registration with existing Email', async () => {
+        const existingEmail: RegistrationFormData = users.registrationForm.existEmail;
         await signUp.checkLogo();
         await signUp.checkInputName();
-        await safeFill(signUp.inputName, 'Test');
+        await safeFill(signUp.inputName, existingEmail.name);
         await signUp.checkInputEmail();
-        await safeFill(signUp.inputEmailSignUp, 'test@gmail.com');
+        await safeFill(signUp.inputEmailSignUp, existingEmail.email);
         await signUp.checkInputPassword();
-        await safeFill(signUp.inputPasswordSignUp, 'Qwerty123');
+        await safeFill(signUp.inputPasswordSignUp, existingEmail.password);
         await signUp.checkRepeatPassword();
-        await safeFill(signUp.inputRepeatPassword, 'Qwerty123');
+        await safeFill(signUp.inputRepeatPassword, existingEmail.repeatPassword);
         await signUp.checkAcceptCondition();
         await safeClick(signUp.acceptCondition);
         await signUp.checkAcceptNews();

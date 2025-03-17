@@ -28,78 +28,51 @@ export class Header {
 
 
     async checkLogolink() {
-        try {
-            await expect(this.linkLogo).toBeVisible();
-            await expect(this.linkLogo).toBeTruthy();
-        } catch (error) {
-            console.error("Error in checkLogolink:", error);
-        }
+        await checkElementAttributesSafely(this.linkLogo, {
+            class: 'navbar-brand',
+        });
     }
 
     async checkSignIn() {
-        try {
-            await expect(this.linkSignIn).toBeVisible();
-            await expect(this.linkSignIn).toBeTruthy();
-            await expect(this.linkSignIn).toHaveAttribute('class', 'nav-link anchor');
-            await expect(this.linkSignIn).toHaveAttribute('rel', 'canonical');
-        } catch (error) {
-            console.error("Error in checkSignIn:", error);
-        }
+        await checkElementAttributesSafely(this.linkHome, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     }
 
     async checkHome() {
-        try {
-            await expect(this.linkHome).toBeVisible();
-            await expect(this.linkHome).toBeTruthy();
-            await expect(this.linkHome).toHaveAttribute('class', 'nav-link anchor');
-            await expect(this.linkHome).toHaveAttribute('rel', 'canonical');
-        } catch (error) {
-            console.error("Error in checkHome:", error);
-        }
+        await checkElementAttributesSafely(this.linkAbout, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     }
 
     async checkAbout() {
-        try {
-            await expect(this.linkAbout).toBeVisible();
-            await expect(this.linkAbout).toBeTruthy();
-            await expect(this.linkAbout).toHaveAttribute('class', 'nav-link anchor');
-            await expect(this.linkAbout).toHaveAttribute('rel', 'canonical');
-        } catch (error) {
-            console.error("Error in checkAbout:", error);
-        }
+        await checkElementAttributesSafely(this.linkHowItWorks, {
+            class: 'nav-link anchor active',
+            rel: 'canonical',
+        })
     }
 
     async checkHowItWorks() {
-        try {
-            await expect(this.linkHowItWorks).toBeVisible();
-            await expect(this.linkHowItWorks).toBeTruthy();
-            await expect(this.linkHowItWorks).toHaveAttribute('class', 'nav-link anchor active');
-            await expect(this.linkHowItWorks).toHaveAttribute('rel', 'canonical');
-        } catch (error) {
-            console.error("Error in checkHowItWorks:", error);
-        }
+        await checkElementAttributesSafely(this.linkPricing, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     }
 
     async checkPricing() {
-        try {
-            await expect(this.linkPricing).toBeVisible();
-            await expect(this.linkPricing).toBeTruthy();
-            await expect(this.linkPricing).toHaveAttribute('class', 'nav-link anchor');
-            await expect(this.linkPricing).toHaveAttribute('rel', 'canonical');
-        } catch (error) {
-            console.error("Error in checkPricing:", error);
-        }
+        await checkElementAttributesSafely(this.linkContact, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     }
 
     async checkContact() {
-        try {
-            await expect(this.linkContact).toBeVisible();
-            await expect(this.linkContact).toBeTruthy();
-            await expect(this.linkContact).toHaveAttribute('class', 'nav-link anchor');
-            await expect(this.linkContact).toHaveAttribute('rel', 'canonical');
-        } catch (error) {
-            console.error("Error in checkContact:", error);
-        }
+        await checkElementAttributesSafely(this.linkTryForFree, {
+            class: 'nav-link anchor',
+            rel: 'canonical',
+        })
     }
 
     async checkTryForFree() {

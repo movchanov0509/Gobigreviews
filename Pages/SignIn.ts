@@ -1,4 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
+import { checkElementAttributesSafely } from './methods';
 
 
 export class SignIn {
@@ -45,120 +46,67 @@ export class SignIn {
     }
 
     async checkLogo() {
-        try {
-            await expect(this.logo).toBeVisible();
-            await expect(this.logo).toHaveAttribute('a', 'href="/"');
-            await expect(this.logo).toBeTruthy();
-        } catch (error) {
-            console.error("Error in checkLogo:", error);
-            throw error;
-        }
+        await checkElementAttributesSafely(this.logo, {
+            a: 'href="/"',
+        })
     }
 
     async checkSubmit() {
-        try {
-            await expect(this.btnSubmit).toBeVisible();
-            await expect(this.btnSubmit).toBeTruthy();
-            await expect(this.btnSubmit).toHaveAttribute('class', 'btn btn-primary');
-        } catch (error) {
-            console.error("Error in checkSubmit:", error);
-            throw error;
-        }
+        await checkElementAttributesSafely(this.btnSubmit, {
+            class: 'btn btn-primary',
+        })
     }
 
     async checkChat() {
-        try {
-            await expect(this.btnChat).toBeVisible();
-            await expect(this.btnChat).toBeTruthy();
-            await expect(this.btnChat).toHaveAttribute('type', 'button');
-            await expect(this.btnChat).toHaveAttribute('style', 'bottom: 0px; left: 0px; position: absolute; z-index: 1000; border: 0px;');
-            await expect(this.btnChat).toHaveAttribute('tabindex', '0');
-        } catch (error) {
-            console.error("Error in checkChat:", error);
-            throw error;
-        }
+        await checkElementAttributesSafely(this.btnChat, {
+            type: 'button',
+            style: 'bottom: 0px; left: 0px; position: absolute; z-index: 1000; border: 0px;',
+            tabindex: '0',
+        })
     }
 
     async checkClosedChat() {
-        try {
-            await expect(this.closeIconChat).toBeVisible();
-            await expect(this.closeIconChat).toBeTruthy();
-            await expect(this.closeIconChat).toHaveAttribute('role', 'button');
-            await expect(this.closeIconChat).toHaveAttribute('data-text', 'Close');
-            await expect(this.closeIconChat).toHaveAttribute('aria-label', 'Close');
-            await expect(this.closeIconChat).toHaveAttribute('tabindex', '0');
-        } catch (error) {
-            console.error("Error in checkClosedChat:", error);
-            throw error;
-        }
+        await checkElementAttributesSafely(this.closeIconChat, {
+            role: 'button',
+            'data-text': 'Close',
+            'aria-label': 'Close',
+            tabindex: '0',
+        })
     }
 
     async checkForgotPassword() {
-        try {
-            await expect(this.linkForgot).toBeVisible();
-            await expect(this.linkForgot).toBeTruthy();
-            await expect(this.linkForgot).toHaveText(' Forgot password? ');
-            await expect(this.linkForgot).toHaveAttribute('class', 'link-primary');
-        } catch (error) {
-            console.error("Error in checkForgotPassword:", error);
-            throw error;
-        }
+        await checkElementAttributesSafely(this.linkForgot, {
+            class: 'link-primary',
+        }, 'Forgot password?')
     }
 
     async checkGoogleSignIn() {
-        try {
-            await expect(this.googleSignIn).toBeVisible();
-            await expect(this.googleSignIn).toBeTruthy();
-            await expect(this.googleSignIn).toHaveAttribute('class', 'btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100');
-        } catch (error) {
-            console.error("Error in checkGoogleSignIn:", error);
-            throw error;
-        }
+        await checkElementAttributesSafely(this.googleSignIn, {
+            class: 'btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100',
+        })
     }
 
     async checkFacebookSignIn() {
-        try {
-            await expect(this.facebookSignIn).toBeVisible();
-            await expect(this.facebookSignIn).toBeTruthy();
-            await expect(this.facebookSignIn).toHaveAttribute('class', 'btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100');
-        } catch (error) {
-            console.error("Error in checkFacebookSignIn:", error);
-            throw error;
-        }
+        await checkElementAttributesSafely(this.googleSignIn, {
+            class: 'btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100',
+        })
     }
 
     async checkRememberMe() {
-        try {
-            await expect(this.inputRemember).toBeVisible();
-            await expect(this.inputRemember).toBeTruthy();
-            await expect(this.inputRemember).toHaveAttribute('class', 'form-check-input');
-            await expect(this.inputRemember).toHaveAttribute('type', 'checkbox');
-        } catch (error) {
-            console.error("Error in checkRememberMe:", error);
-            throw error;
-        }
+        await checkElementAttributesSafely(this.inputRemember, {
+            class: 'form-check-input',
+            type: 'checkbox',
+        })
     }
 
     async checkKeyEye() {
-        try {
-            await expect(this.keyEye).toBeVisible();
-            await expect(this.keyEye).toBeTruthy();
-        } catch (error) {
-            console.error("Error in checkKeyEye:", error);
-            throw error;
-        }
+        await checkElementAttributesSafely(this.inputRemember, {})
     }
 
     async checkSignUp() {
-        try {
-            await expect(this.linkSignUp).toBeVisible();
-            await expect(this.linkSignUp).toBeTruthy();
-            await expect(this.linkSignUp).toHaveAttribute('class', 'link-primary fw-semibold');
-            await expect(this.linkSignUp).toHaveText('Sign up');
-        } catch (error) {
-            console.error("Error in checkSignUp:", error);
-            throw error;
-        }
+        await checkElementAttributesSafely(this.linkSignUp, {
+            class: 'link-primary fw-semibold',
+        }, 'Sign up')
     }
 
 }
